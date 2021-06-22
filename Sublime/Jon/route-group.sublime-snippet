@@ -1,0 +1,12 @@
+<snippet>
+    <content><![CDATA[
+// ${1}
+Route::get('${2}', '${10}Controller@list');
+Route::get('${3}/{${7}}', '${11}Controller@get');
+Route::post('${4}', '${12}Controller@create');
+Route::put('${5}/{${8}}', '${13}Controller@update');
+Route::delete('${6}/{${9}}', '${14}Controller@delete');
+]]></content>
+    <tabTrigger>routeg</tabTrigger>
+    <scope>source.php</scope>
+</snippet>

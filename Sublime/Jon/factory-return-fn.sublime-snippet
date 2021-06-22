@@ -1,0 +1,9 @@
+<snippet>
+    <content><![CDATA[
+'${1}' => function () {
+    return ${2}::factory();
+},
+]]></content>
+    <tabTrigger>factfn</tabTrigger>
+    <scope>embedding.php</scope>
+</snippet>

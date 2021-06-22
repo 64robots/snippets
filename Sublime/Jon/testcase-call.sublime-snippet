@@ -1,0 +1,11 @@
+<snippet>
+    <content><![CDATA[
+\$response = \$this->call('POST', '/${1}', \$parameters = [], \$cookies = [], \$files = [], \$server = [], \$content = null))
+                ->assertSuccessful()
+                ->getContent();
+${2:logger(json_encode(\$response));}
+${3}
+]]></content>
+    <tabTrigger>tcall</tabTrigger>
+    <scope>source.php</scope>
+</snippet>

@@ -1,0 +1,18 @@
+<snippet>
+    <content><![CDATA[
+->showOnIndex()
+->showOnDetail()
+->showOnCreating()
+->showOnUpdating()
+->hideFromIndex()
+->hideFromDetail()
+->hideWhenCreating()
+->hideWhenUpdating()
+->onlyOnIndex()
+->onlyOnDetail()
+->onlyOnForms()
+->exceptOnForms()
+]]></content>
+    <tabTrigger>nova-show</tabTrigger>
+    <scope>embedding.php</scope>
+</snippet>

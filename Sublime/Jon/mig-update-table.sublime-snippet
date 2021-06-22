@@ -1,0 +1,9 @@
+<snippet>
+	<content><![CDATA[
+Schema::table('${1}', function (Blueprint \$table) {
+    ${2}
+});
+]]></content>
+	<tabTrigger>migup</tabTrigger>
+	<scope>source.php</scope>
+</snippet>

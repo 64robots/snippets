@@ -1,0 +1,10 @@
+<snippet>
+    <content><![CDATA[
+public function __invoke() 
+{
+    ${1}
+}
+]]></content>
+    <tabTrigger>invoke</tabTrigger>
+    <scope>source.php</scope>
+</snippet>

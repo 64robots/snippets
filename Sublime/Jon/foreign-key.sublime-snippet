@@ -1,0 +1,7 @@
+<snippet>
+    <content><![CDATA[
+\$table->foreign('${1}')->references('id')->on('${2}');
+]]></content>
+    <tabTrigger>fk</tabTrigger>
+    <scope>source.php</scope>
+</snippet>

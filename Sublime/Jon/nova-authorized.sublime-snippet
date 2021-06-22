@@ -1,0 +1,29 @@
+<snippet>
+    <content><![CDATA[
+public static function availableForNavigation(Request \$request)
+{
+    if (\$request->user()->isAdmin()) {
+        return true;
+    }
+
+    return false;
+}
+
+public static function authorizedToCreate(Request \$request)
+{
+    return false;
+}
+
+public function authorizedToUpdate(Request \$request)
+{
+    return false;
+}
+
+public function authorizedToDelete(Request \$request)
+{
+    return false;
+}
+]]></content>
+    <tabTrigger>nova-auth</tabTrigger>
+    <scope>source.php</scope>
+</snippet>

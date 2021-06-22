@@ -1,0 +1,12 @@
+<snippet>
+	<content><![CDATA[
+public function ${1}()
+{
+    return \$this->hasMany(${2}::class, '${3}');
+}
+
+${4}
+]]></content>
+	<tabTrigger>hasmany</tabTrigger>
+	<scope>source.php</scope>
+</snippet>

@@ -1,0 +1,88 @@
+<snippet>
+    <content><![CDATA[
+<?php
+
+namespace App\Http\Requests;
+
+use Illuminate\Contracts\Validation\Validator;
+use App\Http\Requests\JsonFormRequest;
+use Illuminate\Support\Arr;
+
+class ${1}Request extends JsonFormRequest
+{
+    /**
+     * Determine if the user is authorized to make this request.
+     *
+     * @return bool
+     */
+    public function authorize()
+    {
+        return true;
+    }
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array
+     */
+    public function rules()
+    {
+        return [
+            '${2}' => 'required|${3}',
+            ${4}
+            'is_post' => 'required|boolean',
+            'is_update' => 'required|boolean',
+            'is_edit' => 'required|boolean',
+            'is_delete' => 'required|boolean',
+        ];
+    }
+
+    /***************************************************************************************
+     ** Overriding
+     ***************************************************************************************/
+
+    /**
+     * Append "is_update" to Request Input before validation
+     */
+    public function addRequestChecks()
+    {
+        \$data = \$this->all();
+        \$data['is_post'] = \$this->isPost();
+        \$data['is_update'] = \$this->isPut();
+        \$data['is_edit'] = \$this->isPost() || \$this->isPut();
+        \$data['is_delete'] = \$this->isDelete();
+        \$this->replace(\$data);
+        return \$this->all();
+    }
+
+    /**
+     * Modify Input Data Before Validation
+     */
+    public function validateResolved()
+    {
+        \$this->addRequestChecks();
+        parent::validateResolved();
+    }
+
+    /**
+     * Modify Conditions of Validator
+     */
+    protected function getValidatorInstance()
+    {
+        \$validator = parent::getValidatorInstance();
+        // $validator->sometimes();
+        \$validator->after(function (\$validator) {
+            \$validator->setRules(Arr::except(\$validator->getRules(), [
+                'is_post',
+                'is_update',
+                'is_edit',
+                'is_delete',
+            ]));
+        });
+        return \$validator;
+    }
+}
+]]></content>
+    <tabTrigger>request</tabTrigger>
+    <scope>embedding.php</scope>
+</snippet>

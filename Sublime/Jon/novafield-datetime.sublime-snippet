@@ -1,0 +1,7 @@
+<snippet>
+    <content><![CDATA[
+DateTime::make('${1}')->format('MM/DD h:mm a'),
+]]></content>
+    <tabTrigger>novfdt</tabTrigger>
+    <scope>source.php</scope>
+</snippet>

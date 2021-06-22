@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[
+${1}::factory()->create(${2});
+${3}
+]]></content>
+    <tabTrigger>fact</tabTrigger>
+    <scope>source.php</scope>
+</snippet>

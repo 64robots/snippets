@@ -1,0 +1,22 @@
+<snippet>
+    <content><![CDATA[
+/***************************************************************************************
+ ** MODS
+ ***************************************************************************************/
+
+public static function boot()
+{
+    parent::boot();
+    static::creating(function (\$${1}) {
+        \$${2}->token = str_random(30);
+    });
+}
+
+public function getRouteKeyName()
+{
+    return 'token';
+}
+]]></content>
+    <tabTrigger>mods</tabTrigger>
+    <scope>embedding.php</scope>
+</snippet>

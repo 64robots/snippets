@@ -1,0 +1,37 @@
+<snippet>
+    <content><![CDATA[
+<?php 
+
+namespace Tests\\${1:Unit};
+
+use Tests\TestCase;
+use Faker\Generator;
+use Illuminate\Foundation\Testing\WithoutMiddleware;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Log;
+
+use Carbon\Carbon;
+use Faker\Factory;
+
+use App\Models\User;
+use App\Models\\${2:Model};
+
+class ${TM_FILENAME/(.+)\..+|.*/$1/:name} extends TestCase
+{
+    use RefreshDatabase;
+
+    /**
+     * @test
+     */
+    public function ${3}
+    {
+        ${4}
+    }
+}
+]]></content>
+    <tabTrigger>tunit</tabTrigger>
+    <scope>embedding.php</scope>
+</snippet>

@@ -1,0 +1,10 @@
+<snippet>
+	<content><![CDATA[
+public function scope${1}(\$query${2})
+{
+	return \$query->where('${3}', ${4});
+}
+]]></content>
+	<tabTrigger>scope</tabTrigger>
+	<scope>source.php</scope>
+</snippet>

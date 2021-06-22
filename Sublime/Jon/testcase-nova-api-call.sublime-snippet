@@ -1,0 +1,18 @@
+<snippet>
+    <content><![CDATA[
+\$response = \$this->actingAs(\$user)
+                ->json('${2:POST}', '/nova-api/${3}?editMode=create&editing=true', [
+                    '${5}'
+                ])
+                ->assertSuccessful()
+                ->assertJson([
+                    'id' => ${4}::first()->id,
+                    'resource' => [
+                        'id' => ${4}::first()->id,
+                        ''
+                    ],
+                ]);;
+]]></content>
+    <tabTrigger>tnova-api</tabTrigger>
+    <scope>source.php</scope>
+</snippet>

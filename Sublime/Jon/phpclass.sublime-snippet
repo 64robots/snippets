@@ -1,0 +1,17 @@
+<snippet>
+    <content><![CDATA[
+<?php
+
+namespace App${TM_FILEPATH/(?:.*app)|(\/)([^\/]+)(?=\/)|(?:\/[^\/]+\.php$)/(?1:\\$^N:$^N)/g};
+
+class ${TM_FILENAME/\.php$//}
+{
+    public function __construct(${1})
+    {
+        
+    }
+}
+]]></content>
+    <tabTrigger>classphp</tabTrigger>
+    <scope>text</scope>
+</snippet>

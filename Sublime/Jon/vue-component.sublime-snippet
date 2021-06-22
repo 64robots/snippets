@@ -1,0 +1,44 @@
+<snippet>
+    <content><![CDATA[
+<template>
+  <div>
+      
+  </div>
+</template>
+
+<script>
+export default {
+  components: {
+  },
+
+  mixins: [],
+
+  props: {
+  },
+
+  data () {
+    return {
+      ${1}
+    }
+  },
+
+  computed: {
+  },
+
+  created () {
+  },
+
+  mounted () {
+  },
+
+  methods: {
+  },
+}
+</script>
+
+<style lang="scss" scoped>
+  
+</style>
+]]></content>
+    <tabTrigger>vcomp</tabTrigger>
+</snippet>

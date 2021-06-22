@@ -1,0 +1,14 @@
+<snippet>
+    <content><![CDATA[
+public function ${1}()
+{
+    return \$this->state(function (array \$attributes) {
+        return [
+            '${2}' => ${3},
+        ];
+    });
+}
+]]></content>
+    <tabTrigger>fstate</tabTrigger>
+    <scope>source.php</scope>
+</snippet>

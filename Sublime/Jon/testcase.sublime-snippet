@@ -1,0 +1,163 @@
+<snippet>
+    <content><![CDATA[
+<?php 
+
+namespace Tests\Controllers;
+
+use Tests\TestCase;
+use Faker\Generator;
+use Illuminate\Foundation\Testing\WithoutMiddleware;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Log;
+
+use Carbon\Carbon;
+use Faker\Factory;
+
+use App\Models\User;
+use App\Models\\${1:Model};
+
+class ${TM_FILENAME/(.+)\..+|.*/$1/:name} extends TestCase
+{
+    use RefreshDatabase;
+
+    /***************************************************************************************
+     ** GET
+     ***************************************************************************************/
+
+    /**
+     * @test
+     * GET 'api/${3:model}s'
+     */
+    public function a_user_can_get_a_list_of_${2:model}s()
+    {
+        \$user = factory(User::class)->create();
+        \$${2:model}s = factory(${1:Model}::class, 2)->create(${4:['creator_id' => \$user->id]});
+
+        \$response = \$this->actingAs(\$user, 'sanctum')
+                        ->json('GET', '/api/${3:model}s')
+                        ->assertJson(['success' => true]);
+        \$response = json_decode(\$response->getContent());
+        \$this->assertCount(2, \$response->data);
+        log::error(json_encode(\$response));
+    }
+
+    /**
+     * @test
+     * GET 'api/${3:model}s'
+     */
+    public function a_user_can_search_for_a_${2:model}_by_name()
+    {
+        \$user = factory(User::class)->create();
+        \$${2:model}s = factory(${1:Model}::class, 5)->create(${4:['creator_id' => \$user->id]});
+
+        \$random_${2:model} = \$${2:model}s->random();
+
+        \$response = \$this->actingAs(\$user, 'sanctum')
+                        ->json('GET', '/api/${3:model}s', [
+                            'term' => \$random_${2:model}->name,
+                        ])
+                        ->assertJson(['success' => true]);
+        \$response = json_decode(\$response->getContent());
+
+        \$this->assertTrue(count(\$response->data) >= 1);
+
+        \$returned_${2:model}s = collect(\$response->data);
+        \$this->assertTrue(\$returned_${2:model}s->pluck('id')->contains(\$random_${2:model}->id));
+        \$this->assertEquals(\$returned_${2:model}s->first()->id, \$random_${2:model}->id);
+        log::error(json_encode(\$response));
+    }
+
+    /**
+     * @test
+     * GET 'api/${3:model}s/{${2:model}}'
+     */
+    public function a_user_can_get_a_${2:model}()
+    {
+        \$user = factory(User::class)->create();
+        \$${2:model} = factory(${1:Model}::class)->create(${4:['creator_id' => \$user->id]});
+
+        \$response = \$this->actingAs(\$user, 'sanctum')
+                        ->json('GET', '/api/v1/${3:model}s/' . \$${2:model}->id)
+                        ->assertJson(['success' => true]);
+        \$response = json_decode(\$response->getContent());
+
+        \$this->assertEquals(\$response->data->id, \$${2:model}->id);
+        log::error(json_encode(\$response));
+    }
+
+    /***************************************************************************************
+     ** CRUD
+     ***************************************************************************************/
+
+    /**
+     * @test
+     * POST 'api/${3:model}s'
+     */
+    public function a_user_can_create_a_${2:model}()
+    {
+        \$user = factory(User::class)->create();
+
+        \$faker = Factory::create();
+        \$identity_field = \$faker->catchPhrase;
+        \$response = \$this->actingAs(\$user, 'sanctum')
+                        ->json('POST', '/api/${3:model}s', [
+                            '' => \$identity_field,
+                        ])
+                        ->assertJson(['success' => true]);
+        \$response = json_decode(\$response->getContent());
+
+        \$${2:model} = ${1:Model}::find(\$response->data->id);
+
+        \$this->assertNotNull(\$${2:model});
+        \$this->assertEquals(\$response->data->identity_field, \$identity_field);
+        log::error(json_encode(\$response));
+    }
+
+    /**
+     * @test
+     * PUT 'api/${3:model}s/{${2:model}}'
+     */
+    public function a_user_can_update_a_${2:model}()
+    {
+        \$user = factory(User::class)->create();
+        \$${2:model} = factory(${1:Model}::class)->create(${4:['creator_id' => \$user->id]});
+
+        \$faker = Factory::create();
+        \$identity_field = \$faker->catchPhrase;
+        \$response = \$this->actingAs(\$user, 'sanctum')
+                        ->json('PUT', '/api/${3:model}s/' . \$${2:model}->id, [
+                            '' => \$identity_field,
+                        ])
+                        ->assertJson(['success' => true]);
+        \$response = json_decode(\$response->getContent());
+
+        \$this->assertNotEquals(\$${2:model}->identify_field, \$response->data->identity_field);
+        \$this->assertEquals(\$${2:model}->fresh()->identify_field, \$response->data->identity_field);
+        log::error(json_encode(\$response));
+    }
+
+    /**
+     * @test
+     * DELETE 'api/${3:model}s/{${2:model}}'
+     */
+    public function a_user_can_delete_a_${2:model}()
+    {
+        \$user = factory(User::class)->create();
+        \$${2:model} = factory(${1:Model}::class)->create(${4:['creator_id' => \$user->id]});
+
+        \$response = \$this->actingAs(\$user, 'sanctum')
+                        ->json('DELETE', '/api/${3:model}s/' . \$${2:model}->id)
+                        ->assertJson(['success' => true]);
+        \$response = json_decode(\$response->getContent());
+
+        \$this->assertNull(\$${2:model}->fresh());
+        log::error(json_encode(\$response));
+    }
+}
+]]></content>
+    <tabTrigger>tcase</tabTrigger>
+    <scope>embedding.php</scope>
+</snippet>

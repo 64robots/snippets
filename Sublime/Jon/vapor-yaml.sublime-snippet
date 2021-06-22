@@ -1,0 +1,50 @@
+<snippet>
+    <content><![CDATA[
+# below name
+separate-vendor: true
+environments:
+    production:
+        gateway-version: 2
+        warm: 10
+        timeout: 30
+        concurrency: 100
+        queue-timeout: 300
+        queue-concurrency: 50
+        domain: staging-api.feednurses.com
+        capacity: 3
+        database: ${1}
+        storage: ${2}-production
+        memory: 1024
+        cli-memory: 512
+        cli-timeout: 900
+        runtime: php-7.4
+        build:
+            - 'COMPOSER_MIRROR_PATH_REPOS=1 composer install --no-dev'
+            - 'php artisan event:cache'
+            - 'php artisan config:cache'
+            - 'php artisan route:cache'
+        deploy:
+            - 'php artisan migrate --force'
+    staging:
+        gateway-version: 2
+        warm: 10
+        timeout: 30
+        concurrency: 100
+        queue-timeout: 300
+        queue-concurrency: 50
+        domain: staging-api.feednurses.com
+        database: ${1}
+        storage: ${2}-staging
+        memory: 1024
+        cli-memory: 512
+        cli-timeout: 900
+        build:
+            - 'COMPOSER_MIRROR_PATH_REPOS=1 composer install --no-dev'
+            - 'php artisan event:cache'
+            - 'php artisan config:cache'
+            - 'php artisan route:cache'
+        deploy:
+            - 'php artisan migrate --force'
+]]></content>
+    <tabTrigger>vapor-yaml</tabTrigger>
+</snippet>

@@ -1,0 +1,12 @@
+<snippet>
+    <content><![CDATA[
+\$response = \$this->actingAs(\$user, 'api${1}')
+                ->json('${2:POST}', '/api/${3}'${4:,[]})
+                ->assertJson(['success' => true${5}]);
+\$response = json_decode(\$response->getContent());
+${6:log::error(json_encode(\$response));}
+${7}
+]]></content>
+    <tabTrigger>tjson</tabTrigger>
+    <scope>source.php</scope>
+</snippet>

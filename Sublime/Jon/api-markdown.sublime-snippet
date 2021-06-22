@@ -1,0 +1,63 @@
+<snippet>
+  <content><![CDATA[
+#API ${1:Model}s
+
+### List ${1:Model}s
+GET: /api/${2:model}s
+```
+Params: {
+  term: 'London Russel'
+}
+Response: {
+  
+}
+```
+
+
+### View A ${1:Model}
+GET: /api/${2:model}s/{${2:model}Id}
+```
+Params: null
+Response: {
+  
+}
+```
+
+
+### Create A ${1:Model}
+POST: /api/${2:model}s
+```
+Params: {
+  
+}
+Response: {
+  
+}
+```
+
+
+### Update A ${1:Model}
+PUT: /api/${2:model}s/{${2:model}Id}
+```
+Params: {
+  
+}
+Response: {
+  
+}
+```
+
+### Delete A ${1:Model}
+DELETE: /api/${2:model}s/{${2:model}Id}
+```
+Params: null
+Response: {
+  "success": true,
+  "data": [],
+  "message": ""
+}
+```
+]]></content>
+  <tabTrigger>apimark</tabTrigger>
+  <scope>text.html.markdown</scope>
+</snippet>

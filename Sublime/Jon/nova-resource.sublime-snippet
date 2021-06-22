@@ -1,0 +1,85 @@
+<snippet>
+    <content><![CDATA[
+<?php
+
+namespace App\Nova;
+
+use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\Date;
+use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Number;
+use Illuminate\Http\Request;
+use Laravel\Nova\Http\Requests\NovaRequest;
+
+class ${TM_FILENAME/\.php$//} extends Resource
+{
+
+    /***************************************************************************************
+     ** ATTRIBUTE MODS
+     ***************************************************************************************/
+
+    public static \$model = \App\Models\\${TM_FILENAME/\.php$//}::class;
+    public static \$title = 'name';
+    public static \$group = '${1}';
+    public static \$displayInNavigation = true;
+    public static \$search = [
+        'id', 'name', '${2}',
+    ];
+
+    /***************************************************************************************
+     ** OVERRIDES
+     ***************************************************************************************/
+
+    public static function label()
+    {
+        return '${TM_FILENAME/\.php$//}s';
+    }
+
+    /***************************************************************************************
+     ** GENERAL
+     ***************************************************************************************/
+
+    public function fields(Request \$request)
+    {
+        return [
+            ID::make()->sortable(),
+
+            BelongsTo::make('User')
+                ->hideFromIndex()
+                ->hideWhenUpdating()
+                ->rules('required'),
+
+            Text::make('Name')
+                ->sortable()
+                ->rules('required', 'max:255'),
+
+            Date::make('Date', 'created_at'),
+        ];
+    }
+    
+    public function cards(Request \$request)
+    {
+        return [];
+    }
+
+    public function filters(Request \$request)
+    {
+        return [];
+    }
+
+    public function lenses(Request \$request)
+    {
+        return [];
+    }
+
+    public function actions(Request \$request)
+    {
+        return [];
+    }    
+}
+]]></content>
+    <tabTrigger>nova</tabTrigger>
+    <scope>embedding.php</scope>
+</snippet>

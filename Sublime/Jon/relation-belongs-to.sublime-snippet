@@ -1,0 +1,10 @@
+<snippet>
+    <content><![CDATA[
+public function ${1}()
+{
+    return \$this->belongsTo(\App\Models\\${2}::class);
+}
+]]></content>
+    <tabTrigger>belongsTo</tabTrigger>
+    <scope>source.php</scope>
+</snippet>

@@ -1,0 +1,8 @@
+<snippet>
+    <content><![CDATA[
+\$faker = Factory::create();
+${1}
+]]></content>
+    <tabTrigger>faker</tabTrigger>
+    <scope>source.php</scope>
+</snippet>

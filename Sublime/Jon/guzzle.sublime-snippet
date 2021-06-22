@@ -1,0 +1,12 @@
+<snippet>
+    <content><![CDATA[
+\$client = new Client(['base_uri' => config('app.url')]);
+\$client->request('POST', '${1}', [
+    'json' => [
+        'foo' => 'bar'
+    ],
+]);
+]]></content>
+    <tabTrigger>guzzler</tabTrigger>
+    <scope>source.php</scope>
+</snippet>
